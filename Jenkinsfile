@@ -13,7 +13,7 @@ pipeline {
         
         stage("Ansible Backend"){
                 steps {
-                    ansiblePlaybook credentialsId: 'ubuntu', disableHostKeyChecking: true, installation: 'Ansible_Practica2', inventory: 'inventory.inv', playbook: 'playbook-frontend.yml'
+                    ansiblePlaybook credentialsId: 'ubuntu', disableHostKeyChecking: true, installation: 'Ansible_Practica2', inventory: 'inventory.inv', playbook: 'playbook-backend.yml'
                 }   
             }
 
