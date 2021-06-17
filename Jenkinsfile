@@ -26,6 +26,7 @@ pipeline {
             steps {
                 script {	
 		            sh '''cd frontend
+			    	        export CHROME_BIN='/usr/bin/chromium'
                         	ng test --watch=false --browsers=ChromeHeadless'''
                 }
             }   
