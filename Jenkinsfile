@@ -25,8 +25,7 @@ pipeline {
         stage("Ejecutar pruebas unitarias"){
             steps {
                 script {	
-		            sh '''cd frontend
-                        	ng test --watch=false'''
+		            sh '''cd frontend'''
                 }
             }   
         }
