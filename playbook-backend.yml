@@ -1,0 +1,30 @@
+---
+
+- hosts: serverEC2
+  become: true
+  tasks:
+  - name: Agrego la llave Docker
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+  - name: Obtengo docker
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu bionic stable
+      state: present
+  - name: Instalo Docker
+    apt: update_cache=yes name=docker-ce state=latest
+
+  - name: Instalo docker-compose
+    remote_user: ubuntu
+    get_url: 
+      url : https://github.com/docker/compose/releases/download/1.25.1-rc1/docker-compose-Linux-x86_64
+      dest: /usr/local/bin/docker-compose
+      mode: 'u+x,g+x'
+
+  - name: Instalo Nodejs 
+    apt: name=nodejs state=present
+  - name: Instalo npm
+    npm:
+      name: "npm@latest"
+      global: yes
+      state: present

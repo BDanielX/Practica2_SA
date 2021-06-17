@@ -1,0 +1,2 @@
+[serverEC2]
+54.149.165.184 ansible_user=ubuntu
