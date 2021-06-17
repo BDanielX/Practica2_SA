@@ -5,15 +5,19 @@ pipeline {
     }
 
         stages {
-        stage("Comprobando funcionamiento de jenkins P2"){
+        stage("Ansible Frontend"){
                 steps {
-                    script {			
-                        sh "echo \"Current workspace is $WORKSPACE\""
-                    }
+                    ansiblePlaybook credentialsId: 'ubuntu', disableHostKeyChecking: true, installation: 'Ansible_Practica2', inventory: 'inventory.inv', playbook: 'playbook-frontend.yml'
+                }   
+            }
+        
+        stage("Ansible Backend"){
+                steps {
+                    ansiblePlaybook credentialsId: 'ubuntu', disableHostKeyChecking: true, installation: 'Ansible_Practica2', inventory: 'inventory.inv', playbook: 'playbook-frontend.yml'
                 }   
             }
 
-        stage("Actualizar paquetes"){
+        stage("Actualizar paquetes frontend"){
             steps {
                 script {	
                     sh '''cd frontend
@@ -22,10 +26,11 @@ pipeline {
             }   
         }
 
-        stage("Ejecutar pruebas unitarias"){
+        stage("Actualizar paquetes backend"){
             steps {
                 script {	
-		            sh '''cd frontend'''
+                    sh '''cd backend
+                        npm install'''
                 }
             }   
         }
