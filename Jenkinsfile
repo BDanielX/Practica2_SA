@@ -1,4 +1,4 @@
-//Este archivo lo usa el pipeline de jenkins  
+//Este archivo lo usa el pipeline de jenkins  prueba
 pipeline {
     agent {
         label 'master'
